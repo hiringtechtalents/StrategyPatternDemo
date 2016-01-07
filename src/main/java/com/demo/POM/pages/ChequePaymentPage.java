@@ -5,7 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
@@ -19,7 +18,8 @@ public class ChequePaymentPage extends BasePageObject implements PaymentMethodSt
     public ChequePaymentPage(WebDriver driver) {
         super(driver);
 
-        PageFactory.initElements(driver, this);
+        // not required as using this in the method creating the ChequePaymentPage object
+        //PageFactory.initElements(driver, this);
     }
 
     @Override
