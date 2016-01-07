@@ -72,9 +72,9 @@ public class PersonalInfoPage extends BasePageObject {
     @FindBy(id="submitAccount")
     private WebElement submit;
 
-    public static Map<String, String> personalInfo;
-    public static Map<String, String> addressInfo;
-    public static Map<String, String> otherInfo;
+    public static Map<String, String> personalInfo = new HashMap<>();
+    public static Map<String, String> addressInfo = new HashMap<>();
+    public static Map<String, String> otherInfo = new HashMap<>();
 
     public enum GENDER {
         MR, MRS
@@ -100,7 +100,6 @@ public class PersonalInfoPage extends BasePageObject {
 	}
 
     public PersonalInfoPage enterPersonalInfo(Map<String, String> personalInfo) {
-        personalInfo = new HashMap<>(personalInfo);
         // if the title is passed as "Mr" then click on the radio button for "Mr"
         // else click on radio button for "Mrs"
         if(personalInfo.get(KEYS.TITLE.name()).equalsIgnoreCase(GENDER.MR.name())){titleMr.click();}
@@ -115,7 +114,6 @@ public class PersonalInfoPage extends BasePageObject {
     }
 
     public PersonalInfoPage enterAddressDetails(Map<String, String> addressInfo) {
-        addressInfo = new HashMap<>(addressInfo);
         if(addressFirstName.getAttribute("value").trim().isEmpty() || !(addressFirstName.getAttribute("value")
                 .equalsIgnoreCase(personalInfo.get(KEYS.FNAME.name())))) {
             util.enterText(addressFirstName, addressInfo.get(KEYS.FIRSTNAME.name()));
@@ -140,7 +138,6 @@ public class PersonalInfoPage extends BasePageObject {
     }
 
     public PersonalInfoPage enterOtherDetails(Map<String, String> otherInfo) {
-        otherInfo = new HashMap<>(otherInfo);
         if(otherInfo.containsKey(KEYS.MOREINFO.name())) util.enterText(additionalInfo,
                 otherInfo.get(KEYS.MOREINFO.name()));
         if(otherInfo.containsKey(KEYS.HOMEPHONE.name())) util.enterText(homePhone,

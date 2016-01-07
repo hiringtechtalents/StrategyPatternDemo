@@ -10,7 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 /**
  * Created by SANDEEP on 1/4/2016.
  */
-public class WirePaymentPage extends BasePageObject {
+public class WirePaymentPage extends BasePageObject implements PaymentMethodStrategy {
 
     @FindBy(css = "button.btn-default.button-medium")
     private WebElement confirmOrder;
@@ -26,6 +26,7 @@ public class WirePaymentPage extends BasePageObject {
         return By.xpath("//h3[contains(text(), 'Bank-wire')]");
     }
 
+    @Override
     public OrderConfirmationPage confirmOrder() {
         this.confirmOrder.click();
 

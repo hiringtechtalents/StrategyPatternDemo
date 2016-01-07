@@ -7,8 +7,6 @@ import com.demo.POM.BasePageObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import java.util.Map;
-
 /**
  * @author SANDEEP
  *
@@ -38,8 +36,7 @@ public class AuthenticationPage extends BasePageObject {
 		return By.cssSelector("#columns > .breadcrumb.clearfix > .navigation_page");
 	}
 	
-	public AddressPage signUp(String email, Map<String, String> info, Map<String, String> addressDetails,
-                        Map<String, String> otherDetails) {
+	public AddressPage signUp(String email) {
 		PersonalInfoPage personalInfo;
 
 		if(createAccount.isValidEmail(email)) {
@@ -48,9 +45,9 @@ public class AuthenticationPage extends BasePageObject {
 			throw new RuntimeException("Invalid email address entered.");
 		}
 
-		return personalInfo.enterPersonalInfo(info)
-				.enterAddressDetails(addressDetails)
-				.enterOtherDetails(otherDetails)
+		return personalInfo.enterPersonalInfo(PersonalInfoPage.personalInfo)
+				.enterAddressDetails(PersonalInfoPage.addressInfo)
+				.enterOtherDetails(PersonalInfoPage.otherInfo)
 				.register();
 	}
 
