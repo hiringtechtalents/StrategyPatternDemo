@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
  * Created by SANDEEP on 1/4/2016.
@@ -23,7 +24,9 @@ public class WirePaymentPage extends BasePageObject implements PaymentMethodStra
 
     @Override
     protected By getUniqueElement() {
-        return By.xpath("//h3[contains(text(), 'Bank-wire')]");
+        By uniqueElement = By.xpath("//h3[contains(text(), 'Bank-wire')]");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(uniqueElement));
+        return uniqueElement;
     }
 
     @Override

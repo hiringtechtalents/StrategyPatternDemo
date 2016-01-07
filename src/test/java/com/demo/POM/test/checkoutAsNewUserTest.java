@@ -60,7 +60,7 @@ public class checkoutAsNewUserTest extends BaseTest {
                 shippingPage = addressPage.submit();
 
         PaymentMethodStrategy payment = shippingPage.selectTerms().navigateToPaymentPage()
-                .makePaymentBy(PaymentPage.PAYMENTMODE.BANKWIRE, WirePaymentPage.class);
+                .makePaymentBy(WirePaymentPage.class);
 
         if(payment.confirmOrder().isOrderConfirmed())
             System.out.println("Order Confirmed. Test Successful!!!!!");

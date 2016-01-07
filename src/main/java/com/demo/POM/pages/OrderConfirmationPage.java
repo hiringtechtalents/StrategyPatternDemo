@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
  * Created by SANDEEP on 1/6/2016.
@@ -22,7 +23,9 @@ public class OrderConfirmationPage extends BasePageObject {
 
     @Override
     protected By getUniqueElement() {
-        return By.cssSelector("p.cheque-indent > strong");
+        By uniqueElement = By.cssSelector("p.cheque-indent > strong");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(uniqueElement));
+        return uniqueElement;
     }
 
     public boolean isOrderConfirmed() {
