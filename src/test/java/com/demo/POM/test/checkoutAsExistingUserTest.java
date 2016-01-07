@@ -57,7 +57,7 @@ public class checkoutAsExistingUserTest extends BaseTest {
         if(addressPage.validateAddress("delivery") && addressPage.validateAddress("billing"))
             shippingPage = addressPage.submit();
 
-        ChequePaymentPage payment = shippingPage.selectTerms().navigateToPaymentPage()
+        PaymentMethodStrategy payment = shippingPage.selectTerms().navigateToPaymentPage()
                 .makePaymentBy(PaymentPage.PAYMENTMODE.CHEQUE, ChequePaymentPage.class);
 
         if(payment.confirmOrder().isOrderConfirmed())

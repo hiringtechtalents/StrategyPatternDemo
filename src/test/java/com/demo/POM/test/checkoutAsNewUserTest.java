@@ -59,7 +59,7 @@ public class checkoutAsNewUserTest extends BaseTest {
         if(addressPage.validateAddress("delivery") && addressPage.validateAddress("billing"))
                 shippingPage = addressPage.submit();
 
-        WirePaymentPage payment = shippingPage.selectTerms().navigateToPaymentPage()
+        PaymentMethodStrategy payment = shippingPage.selectTerms().navigateToPaymentPage()
                 .makePaymentBy(PaymentPage.PAYMENTMODE.BANKWIRE, WirePaymentPage.class);
 
         if(payment.confirmOrder().isOrderConfirmed())
