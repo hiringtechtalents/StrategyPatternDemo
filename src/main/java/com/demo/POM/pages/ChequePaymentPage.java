@@ -5,6 +5,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+<<<<<<< HEAD
+=======
+import org.openqa.selenium.support.PageFactory;
+>>>>>>> a81c8d39b9b6b6571037fded8d8135b7fbdfbdfb
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
