@@ -18,10 +18,6 @@ public class PaymentPage extends BasePageObject {
     @FindBy(css = ".cheque")
     private WebElement payByCheque;
 
-    public enum PAYMENTMODE {
-        BANKWIRE, CHEQUE
-    }
-
     public PaymentPage(WebDriver driver) {
         super(driver);
 
@@ -34,22 +30,17 @@ public class PaymentPage extends BasePageObject {
         return By.cssSelector("a.cheque");
     }
 
-    private WirePaymentPage makePaymentByWire() {
-        payByBankWire.click();
-        return new WirePaymentPage(driver);
-    }
+    public <T extends BasePageObject> T makePaymentBy(Class<T> clazz) {
+        // if the passed class is of type ChequePaymentPage then call the appropriate method
+        if(clazz.getSimpleName().equals("ChequePaymentPage")) {
+            payByCheque.click();
 
-    private ChequePaymentPage makePaymentByCheque() {
-        payByCheque.click();
+            return clazz.cast(new ChequePaymentPage(driver));
+        }
+        if(clazz.getSimpleName().equals("WirePaymentPage")) {
+            payByBankWire.click();
 
-        return new ChequePaymentPage(driver);
-    }
-
-    public <T extends BasePageObject> T makePaymentBy(PAYMENTMODE paymentMode, Class<T> clazz) {
-        if(paymentMode.name().equalsIgnoreCase("cheque")) {
-            return (clazz.cast(makePaymentByCheque()));
-        } else if(paymentMode.name().equalsIgnoreCase("BANKWIRE")) {
-            return (clazz.cast(makePaymentByWire()));
+            return clazz.cast(new WirePaymentPage(driver));
         }
         return null;
     }

@@ -58,7 +58,7 @@ public class checkoutAsExistingUserTest extends BaseTest {
             shippingPage = addressPage.submit();
 
         PaymentMethodStrategy payment = shippingPage.selectTerms().navigateToPaymentPage()
-                .makePaymentBy(PaymentPage.PAYMENTMODE.CHEQUE, ChequePaymentPage.class);
+                .makePaymentBy(ChequePaymentPage.class);
 
         if(payment.confirmOrder().isOrderConfirmed())
             System.out.println("Order Confirmed. Test Successful!!!!!");
