@@ -23,11 +23,7 @@ public class OrderConfirmationPage extends BasePageObject {
 
     @Override
     protected By getUniqueElement() {
-<<<<<<< HEAD
         By uniqueElement = By.cssSelector(".order-confirmation");
-=======
-        By uniqueElement = By.cssSelector("p.cheque-indent > strong");
->>>>>>> a81c8d39b9b6b6571037fded8d8135b7fbdfbdfb
         wait.until(ExpectedConditions.visibilityOfElementLocated(uniqueElement));
         return uniqueElement;
     }

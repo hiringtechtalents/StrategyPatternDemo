@@ -6,6 +6,7 @@ package com.demo.POM.pages;
 import com.demo.POM.BasePageObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 
 /**
  * @author SANDEEP
@@ -25,7 +26,7 @@ public class AuthenticationPage extends BasePageObject {
 		
 		createAccount = new CreateAccountPage(driver);
 		
-		login = new LoginPage(driver);
+		login = PageFactory.initElements(driver, LoginPage.class);
 	}
 
 	/*
@@ -52,6 +53,6 @@ public class AuthenticationPage extends BasePageObject {
 	}
 
 	public AddressPage login(String email, String password) {
-        return login.signInAsExistingUserDuringCheckout(email, password);
+        return login.signIn(email, password, AddressPage.class);
 	}
 }

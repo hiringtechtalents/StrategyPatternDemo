@@ -30,19 +30,25 @@ public class LoginPage extends BasePageObject {
 	 */
 	public LoginPage(WebDriver driver) {
 		super(driver);
-
-		PageFactory.initElements(driver, this);
 	}
 
-	/* (non-Javadoc)
-	 * @see BasePageObject#getUniqueElement()
-	 */
+    /* (non-Javadoc)
+         * @see BasePageObject#getUniqueElement()
+         */
 	@Override
 	protected By getUniqueElement() {
 		return By.cssSelector(".lost_password > a");
 	}
 
-    public AddressPage signInAsExistingUserDuringCheckout(String email, String password) {
+    /**
+     * The method allows for the user to specify which page object they want to be redirected to
+     * based on whether the user tried to log in during the checkout process
+     * or during the
+     * @param email email address
+     * @param password password for the account
+     * @return instance of the page object requested via the clazz instance
+     */
+    public <T extends BasePageObject> T signIn(String email, String password, Class<T> clazz) {
         util.enterText(txtEmail, email);
         util.enterText(txtPassword, password);
 
@@ -51,6 +57,6 @@ public class LoginPage extends BasePageObject {
         // TODO: make this generic so that it can go to My Account if the user signs in first,
         // AddressPage if the user enters login info during checkout
         // or back to LoginPage if the user enters invalid information.
-        return new AddressPage(driver);
+        return PageFactory.initElements(driver, clazz);
     }
 }

@@ -31,7 +31,6 @@ public class PaymentPage extends BasePageObject {
     }
 
     public <T extends BasePageObject> T makePaymentBy(Class<T> clazz) {
-<<<<<<< HEAD
         // if the passed class is of type ChequePaymentPage then click on payByCheque element
         // else click on payByBankWire element.
         if(clazz.getSimpleName().equals("ChequePaymentPage")) {
@@ -39,18 +38,6 @@ public class PaymentPage extends BasePageObject {
         }
         if(clazz.getSimpleName().equals("WirePaymentPage")) {
             payByBankWire.click();
-=======
-        // if the passed class is of type ChequePaymentPage then call the appropriate method
-        if(clazz.getSimpleName().equals("ChequePaymentPage")) {
-            payByCheque.click();
-
-            return clazz.cast(new ChequePaymentPage(driver));
-        }
-        if(clazz.getSimpleName().equals("WirePaymentPage")) {
-            payByBankWire.click();
-
-            return clazz.cast(new WirePaymentPage(driver));
->>>>>>> a81c8d39b9b6b6571037fded8d8135b7fbdfbdfb
         }
         return PageFactory.initElements(driver, clazz);
     }
