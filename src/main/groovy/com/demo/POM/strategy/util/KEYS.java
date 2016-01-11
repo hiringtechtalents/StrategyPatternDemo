@@ -1,0 +1,9 @@
+package com.demo.POM.strategy.util;
+
+/**
+ * Created by SANDEEP on 1/1/2016.
+ */
+public enum KEYS {
+    TITLE, FNAME, LNAME, PASSWORD, DAY, MONTH, YEAR, FIRSTNAME, LASTNAME, COMPANY, ADDRESS, ADDRESS2, CITY, STATE,
+    ZIP, COUNTRY, MOREINFO, HOMEPHONE, MOBILE, ALIAS
+}
