@@ -12,7 +12,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -94,7 +93,7 @@ public class PersonalInfoPage extends BasePageObject {
 	 */
 	@Override
 	protected By getUniqueElement() {
-        new WebDriverWait(driver,10).until(ExpectedConditions
+        wait.until(ExpectedConditions
                 .visibilityOfElementLocated(By.cssSelector("#account-creation_form > div:nth-child(1) > h3")));
 		return By.cssSelector("#account-creation_form > div:nth-child(1) > h3");
 	}
@@ -150,6 +149,6 @@ public class PersonalInfoPage extends BasePageObject {
     public AddressPage register() {
         submit.click();
 
-        return PageFactory.initElements(driver, AddressPage.class);
+        return PageFactory.initElements((WebDriver) driver, AddressPage.class);
     }
 }

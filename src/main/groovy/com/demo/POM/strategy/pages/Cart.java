@@ -38,7 +38,7 @@ public class Cart extends BasePageObject {
 	
 	public AuthenticationPage toAuthenticationPage() {
 		toSignInPage.click();
-		return new AuthenticationPage(driver);
+		return new AuthenticationPage((WebDriver) driver);
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.demo.POM.strategy.util;
+package com.demo.POM.strategy.util
 
 /**
  * Created by SANDEEP on 1/1/2016.

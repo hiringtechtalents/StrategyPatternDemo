@@ -78,7 +78,7 @@ public class AddressPage extends BasePageObject {
     public ShippingPage submit() {
         submit.click();
 
-        return new ShippingPage(driver);
+        return new ShippingPage((WebDriver) driver);
     }
 
     /*public AddressPage unCheckShippingSameAsBilling() {

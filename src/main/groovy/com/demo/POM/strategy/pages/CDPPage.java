@@ -55,6 +55,6 @@ public class CDPPage extends BasePageObject {
 	public PDPPage clickOnProduct() {
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", productToAdd);
 		
-		return new PDPPage(driver);
+		return new PDPPage((WebDriver) driver);
 	}
 }

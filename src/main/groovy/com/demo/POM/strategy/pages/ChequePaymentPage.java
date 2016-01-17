@@ -33,6 +33,6 @@ public class ChequePaymentPage extends BasePageObject implements PaymentMethodSt
     public OrderConfirmationPage confirmOrder() {
         this.confirmOrder.click();
 
-        return new OrderConfirmationPage(driver);
+        return new OrderConfirmationPage((WebDriver) driver);
     }
 }

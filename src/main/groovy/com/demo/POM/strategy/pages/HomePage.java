@@ -50,14 +50,14 @@ public class HomePage extends BasePageObject {
 		byte indexToClick = (byte) util.randomNumGenerator(0, categories.size());
 		categories.get(indexToClick).click();
 		
-		return (new CDPPage(driver));
+		return (new CDPPage((WebDriver) driver));
 	}
 	
 	public PDPPage navigateTOProductDisplayPage() {
 		byte indexToClick = (byte) util.randomNumGenerator(0, productsOnHomePage.size());
 		productsOnHomePage.get(indexToClick).click();
 		
-		return (new PDPPage(driver));
+		return (new PDPPage((WebDriver) driver));
 	}
 
 }

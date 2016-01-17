@@ -54,6 +54,6 @@ public class LoginPage extends BasePageObject {
 
         btnSubmit.click();
 
-        return PageFactory.initElements(driver, clazz);
+        return PageFactory.initElements((WebDriver) driver, clazz);
     }
 }

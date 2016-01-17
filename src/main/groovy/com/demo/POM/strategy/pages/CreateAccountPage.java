@@ -48,7 +48,7 @@ public class CreateAccountPage extends BasePageObject {
 		
 		this.email.submit();
 		
-		return new PersonalInfoPage(driver);
+		return new PersonalInfoPage((WebDriver) driver);
 	}
 	
 	public boolean isValidEmail(String email) {

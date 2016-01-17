@@ -42,6 +42,6 @@ public class ShippingPage extends BasePageObject {
         //chkboxTermsConditions.submit();
         toPayment.click();
 
-        return new PaymentPage(driver);
+        return new PaymentPage((WebDriver) driver);
     }
 }

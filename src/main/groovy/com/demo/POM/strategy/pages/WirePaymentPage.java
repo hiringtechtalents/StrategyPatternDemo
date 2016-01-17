@@ -33,6 +33,6 @@ public class WirePaymentPage extends BasePageObject implements PaymentMethodStra
     public OrderConfirmationPage confirmOrder() {
         this.confirmOrder.click();
 
-        return new OrderConfirmationPage(driver);
+        return new OrderConfirmationPage((WebDriver) driver);
     }
 }

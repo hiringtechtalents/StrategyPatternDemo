@@ -11,7 +11,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.NoSuchElementException;
 
@@ -71,11 +70,11 @@ public class PDPPage extends BasePageObject {
 	 */
 	public Cart navigateToCart() throws NoSuchElementException {
 		if(IsProductAddedToCart()) {
-			WebElement proceedToCheckout = new WebDriverWait(driver,10).until(ExpectedConditions
+			WebElement proceedToCheckout = wait.until(ExpectedConditions
 					.visibilityOfElementLocated(By.cssSelector("#layer_cart a.btn-default")));
 			proceedToCheckout.click();
 
-			return new Cart(driver);
+			return new Cart((WebDriver) driver);
 		} else {
 			throw new NoSuchElementException("Looks like the cart frame is not displayed.");
 		}

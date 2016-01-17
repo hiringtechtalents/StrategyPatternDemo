@@ -39,6 +39,6 @@ public class PaymentPage extends BasePageObject {
         if(clazz.getSimpleName().equals("WirePaymentPage")) {
             payByBankWire.click();
         }
-        return PageFactory.initElements(driver, clazz);
+        return PageFactory.initElements((WebDriver) driver, clazz);
     }
 }
