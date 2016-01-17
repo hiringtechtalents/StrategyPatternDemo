@@ -35,7 +35,8 @@ public class AuthenticationPage extends BasePageObject {
 	 */
 	@Override
 	protected By getUniqueElement() {
-		return By.cssSelector("#columns > .breadcrumb.clearfix > .navigation_page");
+		uniqueElement = By.cssSelector("#columns > .breadcrumb.clearfix > .navigation_page");
+		return (By) uniqueElement;
 	}
 	
 	public AddressPage signUp(String email) {

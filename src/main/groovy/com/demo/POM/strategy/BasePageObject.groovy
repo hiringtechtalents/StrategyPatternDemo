@@ -7,11 +7,15 @@ import org.openqa.selenium.support.ui.ExpectedConditions
 import org.openqa.selenium.support.ui.WebDriverWait
 import org.testng.Assert
 
+import java.util.concurrent.TimeUnit
+
 abstract class BasePageObject {
 	protected def driver
 	protected WebDriverWait wait
 
-	private def config = FrameworkConfig.instance.config
+	protected def config = FrameworkConfig.instance.config
+
+	protected def uniqueElement
 
 	public BasePageObject(WebDriver driver) {
 		this.driver = driver;
@@ -37,7 +41,11 @@ abstract class BasePageObject {
 
 		// Wait until the unique element is visible in the browser and ready to use. This helps make sure the page is
 		// loaded before the next step of the tests continue.
+		// first reset the implicitwait to 0
+		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS)
+		// then use wait for a specific element using WebDriverWait
 		wait.until(ExpectedConditions.visibilityOfElementLocated(getUniqueElement()))
+		// then set the implicitwait back to the required time.
+		driver.manage().timeouts().implicitlyWait(config.IMPLICITWAIT_TIMEOUT, TimeUnit.SECONDS)
 	}
-
 }

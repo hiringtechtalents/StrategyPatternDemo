@@ -6,6 +6,8 @@ import org.testng.annotations.AfterMethod
 import org.testng.annotations.BeforeClass
 import org.testng.annotations.BeforeMethod
 
+import java.util.concurrent.TimeUnit
+
 class BaseTest {
 
 	protected static def driver
@@ -16,6 +18,7 @@ class BaseTest {
 		// create a WebDriver instance on the basis of the settings
 		// provided in Config.groovy class
 		driver = WebDriverFactory.instance.getDriver("local")
+		driver.manage().timeouts().implicitlyWait(config.IMPLICITWAIT_TIMEOUT, TimeUnit.SECONDS)
 	}
 
 	@BeforeMethod(alwaysRun = true)
@@ -37,5 +40,4 @@ class BaseTest {
 	public void afterClass() {
 		driver.quit()
 	}
-
 }

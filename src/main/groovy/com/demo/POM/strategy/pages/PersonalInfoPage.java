@@ -6,6 +6,7 @@ package com.demo.POM.strategy.pages;
 import com.demo.POM.strategy.BasePageObject;
 import com.demo.POM.strategy.util.KEYS;
 import com.demo.POM.strategy.util.util;
+import groovy.util.ConfigObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,6 +16,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author SANDEEP
@@ -93,9 +95,17 @@ public class PersonalInfoPage extends BasePageObject {
 	 */
 	@Override
 	protected By getUniqueElement() {
+        uniqueElement = By.cssSelector("#account-creation_form > div:nth-child(1) > h3");
+        // first reset the implicitwait to 0
+        ((WebDriver)driver).manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+        // then use wait for a specific element using WebDriverWait
         wait.until(ExpectedConditions
-                .visibilityOfElementLocated(By.cssSelector("#account-creation_form > div:nth-child(1) > h3")));
-		return By.cssSelector("#account-creation_form > div:nth-child(1) > h3");
+                .visibilityOfElementLocated((By) uniqueElement));
+        // then set the implicitwait back to the required time.
+        ((WebDriver)driver).manage().timeouts().implicitlyWait(
+                new Long(((ConfigObject)config).get("IMPLICITWAIT_TIMEOUT").toString()), TimeUnit.SECONDS);
+
+		return (By) uniqueElement;
 	}
 
     public PersonalInfoPage enterPersonalInfo(Map<String, String> personalInfo) {

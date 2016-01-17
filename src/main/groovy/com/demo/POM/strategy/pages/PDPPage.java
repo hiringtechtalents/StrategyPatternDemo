@@ -4,6 +4,7 @@
 package com.demo.POM.strategy.pages;
 
 import com.demo.POM.strategy.BasePageObject;
+import groovy.util.ConfigObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -13,6 +14,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.NoSuchElementException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author SANDEEP
@@ -70,8 +72,14 @@ public class PDPPage extends BasePageObject {
 	 */
 	public Cart navigateToCart() throws NoSuchElementException {
 		if(IsProductAddedToCart()) {
+			// first reset the implicitwait to 0
+			((WebDriver)driver).manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+			// then use wait for a specific element using WebDriverWait
 			WebElement proceedToCheckout = wait.until(ExpectedConditions
 					.visibilityOfElementLocated(By.cssSelector("#layer_cart a.btn-default")));
+			// then set the implicitwait back to the required time.
+			((WebDriver)driver).manage().timeouts().implicitlyWait(
+					new Long(((ConfigObject)config).get("IMPLICITWAIT_TIMEOUT").toString()), TimeUnit.SECONDS);
 			proceedToCheckout.click();
 
 			return new Cart((WebDriver) driver);
