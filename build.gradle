@@ -21,7 +21,10 @@ sourceSets.main.java.srcDirs = []
 sourceSets.main.groovy.srcDirs += ['src/main/java']
 
 tasks.withType(Test) {
-	useTestNG()
+	useTestNG() {
+		parallel = 'classes'
+        threadCount = 5
+	}
 	systemProperties = System.getProperties()
 	
 	maxParallelForks = 2

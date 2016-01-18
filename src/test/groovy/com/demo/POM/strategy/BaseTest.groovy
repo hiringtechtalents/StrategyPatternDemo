@@ -1,5 +1,4 @@
 package com.demo.POM.strategy
-
 import com.demo.POM.strategy.driver.WebDriverFactory
 import org.testng.annotations.AfterClass
 import org.testng.annotations.AfterMethod
@@ -7,6 +6,8 @@ import org.testng.annotations.BeforeClass
 import org.testng.annotations.BeforeMethod
 
 import java.util.concurrent.TimeUnit
+
+import static org.openqa.selenium.support.ThreadGuard.protect
 
 class BaseTest {
 
@@ -17,7 +18,9 @@ class BaseTest {
 	public void beforeClass() throws Exception {
 		// create a WebDriver instance on the basis of the settings
 		// provided in Config.groovy class
-		driver = WebDriverFactory.instance.getDriver("local")
+		// using ThreadGuard.protect in case the tests are run in parallel.
+		// in which case the test execution might get affected.
+		driver = protect(WebDriverFactory.instance.getDriver(System.getProperty("DRIVERTYPE", "local")))
 		driver.manage().timeouts().implicitlyWait(config.IMPLICITWAIT_TIMEOUT, TimeUnit.SECONDS)
 	}
 
@@ -27,7 +30,7 @@ class BaseTest {
 	}
 
 	protected def loadApplication() {
-		driver.manage().window().maximize();
+		driver.manage().window().maximize()
 		driver.get(config.url)
 	}
 

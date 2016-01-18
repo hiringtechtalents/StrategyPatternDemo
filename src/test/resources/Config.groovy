@@ -13,13 +13,13 @@ WEBDRIVERWAIT_POLL = 10
 
 seleniumConfigs {
 	local {
-		browser = System.getProperty("BROWSER",'chrome')
+		browser = System.getProperty("BROWSER","chrome")
 	}
 	remote {
 		ip = System.getProperty("SELENIUM_HOST", "localhost")
 		port = Integer.valueOf(System.getProperty("SELENIUM_PORT", "4444"))
 		browser = System.getProperty("BROWSER",'firefox')
-		version = '41'
+		// version = '41'
 		platform = 'ANY'
 	}
 	mobile {

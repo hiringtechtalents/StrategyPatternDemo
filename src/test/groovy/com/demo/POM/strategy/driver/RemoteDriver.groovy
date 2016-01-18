@@ -5,6 +5,7 @@ package com.demo.POM.strategy.driver
  */
 import org.openqa.selenium.Platform
 import org.openqa.selenium.WebDriver
+import org.openqa.selenium.ie.InternetExplorerDriver
 import org.openqa.selenium.remote.DesiredCapabilities
 import org.openqa.selenium.remote.RemoteWebDriver
 
@@ -33,7 +34,7 @@ class RemoteDriver extends Driver {
 		if(driver == null) {
 			if (browser.equals("firefox")) {
 				capabilities = DesiredCapabilities.firefox()
-			} else if (browser.equals("internetExplorer")) {
+			} else if (browser.contains("internet")) {
 				capabilities = DesiredCapabilities.internetExplorer()
 				capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true)
 			} else if (browser.equals("chrome")) {
