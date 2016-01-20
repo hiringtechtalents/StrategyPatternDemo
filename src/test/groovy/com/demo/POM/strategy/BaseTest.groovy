@@ -29,7 +29,7 @@ class BaseTest {
 		loadApplication()
 	}
 
-	protected def loadApplication() {
+	private void loadApplication() {
 		driver.manage().window().maximize()
 		driver.get(config.url)
 	}

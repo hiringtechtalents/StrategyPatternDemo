@@ -25,10 +25,7 @@ class RemoteDriver extends Driver {
 	@Override
 	WebDriver createDriver() {
 		def browser = config.seleniumConfigs.remote.browser
-		def hostAddress = config.seleniumConfigs.remote.ip
-		def hostPort = config.seleniuConfigs.remote.port
-		def platform = config.seleniumConfigs.remote.platform
-		def version = config.seleniumConfigs.remote.version
+
 		DesiredCapabilities capabilities
 		
 		if(driver == null) {
@@ -37,6 +34,7 @@ class RemoteDriver extends Driver {
 			} else if (browser.contains("internet")) {
 				capabilities = DesiredCapabilities.internetExplorer()
 				capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true)
+				capabilities.setCapability("ie.ensureCleanSession", true);
 			} else if (browser.equals("chrome")) {
 				capabilities = DesiredCapabilities.chrome()
 			} else if (browser.equals('safari')) {
@@ -46,10 +44,11 @@ class RemoteDriver extends Driver {
 			}
 		} else { return driver }
 		
-		capabilities.setVersion(version)
-		capabilities.setPlatform(Platform.fromString(platform))
+		capabilities.setVersion(config.seleniumConfigs.remote.version)
+		capabilities.setPlatform(Platform.fromString(config.seleniumConfigs.remote.platform))
 		return (new RemoteWebDriver(
-				new URL("http://${hostAddress}:${hostPort}/wd/hub"), capabilities))
+				new URL("http://${config.seleniumConfigs.remote.ip}:${config.seleniuConfigs.remote.port}/wd/hub"),
+				capabilities))
 	}
 
 }

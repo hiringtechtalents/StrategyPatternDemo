@@ -1,6 +1,5 @@
 package com.demo.POM.strategy.driver
 
-
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.firefox.FirefoxDriver
@@ -10,11 +9,6 @@ import org.openqa.selenium.remote.DesiredCapabilities
 /**
  * The class extends @see com.sand.base.Driver abstract class to provide driver creation specifically for local
  * webdriver instances.
- */
-
-/**
- * @author SANDEEP
- *
  */
 class LocalDriver extends Driver {
 	
@@ -48,7 +42,6 @@ class LocalDriver extends Driver {
 					// then set the path of the chrome driver to chromedriver
 					path = createDriverIfDriverFileExists('chromedriver')
 				}
-
 				System.setProperty("webdriver.chrome.driver", path)
 				return new ChromeDriver()
 			} else if(browser.toLowerCase().contains("internet")) {
@@ -58,6 +51,7 @@ class LocalDriver extends Driver {
 				System.setProperty("webdriver.ie.driver", path)
 				DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer()
 				capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true)
+				capabilities.setCapability("ie.ensureCleanSession", true);
 				return new InternetExplorerDriver(capabilities)
 			} else if(browser.toLowerCase().contains("safari")) {
 				// TODO: yet to be implemented.
@@ -71,7 +65,7 @@ class LocalDriver extends Driver {
 		}
 	}
 
-	private String createDriverIfDriverFileExists(String driverFileName) {
+	private def createDriverIfDriverFileExists(String driverFileName) {
 		def path = new File("lib/${driverFileName}")
 		if(path.exists()) {
 			return path.toString()

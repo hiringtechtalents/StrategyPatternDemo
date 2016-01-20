@@ -22,7 +22,7 @@ sourceSets.main.groovy.srcDirs += ['src/main/java']
 
 tasks.withType(Test) {
 	useTestNG() {
-		parallel = 'classes'
+		parallel = 'methods'
         threadCount = 5
 	}
 	systemProperties = System.getProperties()
