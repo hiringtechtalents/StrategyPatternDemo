@@ -9,7 +9,7 @@ repositories {
 
 dependencies {
 	compile 'org.codehaus.groovy:groovy-all:2.3.10'
-    compile 'org.seleniumhq.selenium:selenium-java:2.45.0'
+    compile 'org.seleniumhq.selenium:selenium-java:2.50.0'
 	compile 'io.appium:java-client:2.2.0'
 	compile 'com.google.inject:guice:3.0'
     // testCompile dependency to testCompile 'org.testng:testng:6.8.1' and add
@@ -25,7 +25,8 @@ tasks.withType(Test) {
 		parallel = 'methods'
         threadCount = 5
 	}
+
 	systemProperties = System.getProperties()
-	
+
 	maxParallelForks = 2
 }

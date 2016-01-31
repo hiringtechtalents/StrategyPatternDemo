@@ -30,7 +30,7 @@ class BaseTest {
 	}
 
 	private void loadApplication() {
-		driver.manage().window().maximize()
+		//driver.manage().window().maximize()
 		driver.get(config.url)
 	}
 
