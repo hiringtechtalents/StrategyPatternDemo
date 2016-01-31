@@ -15,6 +15,7 @@ dependencies {
     // testCompile dependency to testCompile 'org.testng:testng:6.8.1' and add
     // 'test.useTestNG()' to your build script.
     compile 'org.testng:testng:6.8.1'
+    //compile 'com.applitools:eyes-selenium-java:2.22'
 }
 
 sourceSets.main.java.srcDirs = []
@@ -22,7 +23,7 @@ sourceSets.main.groovy.srcDirs += ['src/main/java']
 
 tasks.withType(Test) {
 	useTestNG() {
-		parallel = 'methods'
+        parallel = 'classes'
         threadCount = 5
 	}
 

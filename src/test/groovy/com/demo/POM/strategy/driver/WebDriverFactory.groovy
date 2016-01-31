@@ -20,43 +20,24 @@ public final class WebDriverFactory {
 	}
 	
 	public WebDriver getDriver(String driverType) throws Exception {
-		switch (driverType) {
-			case "local":
-				driver = new ThreadLocal<>() {
-					@Override
-					protected WebDriver initialValue() {
-						new LocalDriver().createDriver()
-					}
+		driver = new ThreadLocal<WebDriver>() {
+			@Override
+			protected WebDriver initialValue() {
+				switch (driverType) {
+					case "local":
+						return new LocalDriver().createDriver()
+					case "remote":
+						return new RemoteDriver().createDriver()
+					case "mobile":
+						return new MobileDriver().createDriver()
+					case "saucelabs":
+						return new SauceLabsDriver().createDriver()
+					default: throw new Exception("UnSupported driver type requested: ${driverType}")
 				}
-                break
-			case "remote":
-                driver = new ThreadLocal<>() {
-                    @Override
-                    protected WebDriver initialValue() {
-                        new RemoteDriver().createDriver()
-                    }
-                }
-                break
-			case "mobile":
-                driver = new ThreadLocal<>() {
-                    @Override
-                    protected WebDriver initialValue() {
-                        new MobileDriver().createDriver()
-                    }
-                }
-                break
-			case "saucelabs":
-                driver = new ThreadLocal<>() {
-                    @Override
-                    protected WebDriver initialValue() {
-                        new SauceLabsDriver().createDriver()
-                    }
-                }
-                break
-			default: throw new Exception ("UnSupported driver type requested: " + driverType);
-
-			return driver.get()
+			}
 		}
+
+		return driver.get()
 	}
 
     public void closeDriver() {
