@@ -41,6 +41,6 @@ class BaseTest {
 
 	@AfterClass(alwaysRun=true)
 	public void afterClass() {
-		driver.quit()
+		WebDriverFactory.instance.closeDriver()
 	}
 }

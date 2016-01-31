@@ -1,13 +1,12 @@
-package com.demo.POM.strategy.driver;
+package com.demo.POM.strategy.driver
 
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriver
 
 
 public final class WebDriverFactory {
-	// need to make sure the WebDriverFactory instance is thread-safe coz
-	// am worried as the driver instance being returned will be impacted if the tests
-	// are executed in a parallel manner.
-	private static WebDriverFactory instance;
+	private static WebDriverFactory instance
+
+	private ThreadLocal<WebDriver> driver
 	
 	private WebDriverFactory() {}
 	
@@ -23,14 +22,46 @@ public final class WebDriverFactory {
 	public WebDriver getDriver(String driverType) throws Exception {
 		switch (driverType) {
 			case "local":
-				return new LocalDriver().createDriver();
+				driver = new ThreadLocal<>() {
+					@Override
+					protected WebDriver initialValue() {
+						new LocalDriver().createDriver()
+					}
+				}
+                break
 			case "remote":
-				return new RemoteDriver().createDriver();
+                driver = new ThreadLocal<>() {
+                    @Override
+                    protected WebDriver initialValue() {
+                        new RemoteDriver().createDriver()
+                    }
+                }
+                break
 			case "mobile":
-				return new MobileDriver().createDriver();
+                driver = new ThreadLocal<>() {
+                    @Override
+                    protected WebDriver initialValue() {
+                        new MobileDriver().createDriver()
+                    }
+                }
+                break
 			case "saucelabs":
-				return new SauceLabsDriver().createDriver();
+                driver = new ThreadLocal<>() {
+                    @Override
+                    protected WebDriver initialValue() {
+                        new SauceLabsDriver().createDriver()
+                    }
+                }
+                break
 			default: throw new Exception ("UnSupported driver type requested: " + driverType);
+
+			return driver.get()
 		}
 	}
+
+    public void closeDriver() {
+        driver.get().quit()
+
+        driver.remove()
+    }
 }
