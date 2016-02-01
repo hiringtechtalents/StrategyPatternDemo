@@ -37,7 +37,7 @@ public class HomePage extends BasePageObject {
 	@Override
 	protected By getUniqueElement() {
 		// as slider is the unique element on the home page.
-		return By.id("homeslider");
+		return By.id("homepage-slider");
 	}
 	
 	/**
