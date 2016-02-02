@@ -1,4 +1,4 @@
-url = System.getProperty("URL",'http://www.automationpractice.com')
+url = 'http://www.automationpractice.com'
 
 // the setting is useful if we need to take a screenshot after every action
 // functionality for screenshots still to be added to application
