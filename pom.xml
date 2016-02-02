@@ -58,10 +58,6 @@
                     <threadCount>5</threadCount>
                     <systemProperties>
                         <systemProperty>
-                            <name>URL</name>
-                            <value>http://www.automationpractice.com</value>
-                        </systemProperty>
-                        <systemProperty>
                             <name>BROWSER</name>
                             <value>chrome</value>
                         </systemProperty>
