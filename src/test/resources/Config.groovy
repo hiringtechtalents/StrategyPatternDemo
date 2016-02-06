@@ -1,8 +1,7 @@
-url = 'http://www.automationpractice.com'
+url = 'http://automationpractice.com'
 
 // the setting is useful if we need to take a screenshot after every action
-// functionality for screenshots still to be added to application
-take_screenshot = false
+take_screenshot = true
 
 // timeout for implicit and webdriverwait
 WEBDRIVERWAIT_TIMEOUT = 30
@@ -13,13 +12,13 @@ WEBDRIVERWAIT_POLL = 10
 
 seleniumConfigs {
 	local {
-		browser = System.getProperty("BROWSER","chrome")
+		browser = System.getProperty("BROWSER", 'firefox')
 	}
 	remote {
 		ip = System.getProperty("SELENIUM_HOST", "localhost")
 		port = Integer.valueOf(System.getProperty("SELENIUM_PORT", "4444"))
 		browser = System.getProperty("BROWSER",'firefox')
-		// version = '41'
+		version = '42'
 		platform = 'ANY'
 	}
 	mobile {
@@ -31,11 +30,14 @@ seleniumConfigs {
 		platformVersion = '4.4.2'
 	}
 	sauceLabs {
-		userName = ''
-		accessKey = ''
-		os = 'Windows 8'
+		// the various Sauce properties are introduced by the SauceLabs
+		// onDemand jenkins plugin. Using these to set the desired properties/capabilities
+		// Set default values if the properties are not supplied.
+		userName = System.getProperty('SAUCE_USERNAME', 'sandeep-singh-79')
+		accessKey = System.getProperty('SAUCE_ACCESS_KEY', 'hIngLzBN7tzK4q+8mRTFt5vucVIGISGkfgJm/BTm8XY=')
+		os = System.getProperty('SELENIUM_PLATFORM', 'Windows 8')
 		browser = System.getProperty("BROWSER",'firefox')
-		browserVersion = '41'
+		browserVersion = System.getProperty('SELENIUM_VERSION', '42')
 		onDemand {
 			server = 'ondemand.saucelabs.com'
 			port = '80'

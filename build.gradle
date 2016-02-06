@@ -1,21 +1,21 @@
 // Apply the java plugin to add support for Java
-apply plugin: 'java'
+//apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'eclipse'
 
 repositories {
-    mavenCentral()
+	mavenCentral()
 }
 
 dependencies {
-	compile 'org.codehaus.groovy:groovy-all:2.3.10'
-    compile 'org.seleniumhq.selenium:selenium-java:2.50.0'
+	compile 'org.codehaus.groovy:groovy-all:2.4.5'
+	compile 'org.seleniumhq.selenium:selenium-java:2.50.0'
 	compile 'io.appium:java-client:2.2.0'
 	compile 'com.google.inject:guice:3.0'
-    // testCompile dependency to testCompile 'org.testng:testng:6.8.1' and add
-    // 'test.useTestNG()' to your build script.
-    compile 'org.testng:testng:6.8.1'
-    //compile 'com.applitools:eyes-selenium-java:2.22'
+	// testCompile dependency to testCompile 'org.testng:testng:6.8.1' and add
+	// 'test.useTestNG()' to your build script.
+	compile 'org.testng:testng:6.8.5'
+	//compile 'com.applitools:eyes-selenium-java:2.22'
 }
 
 sourceSets.main.java.srcDirs = []
@@ -23,16 +23,25 @@ sourceSets.main.groovy.srcDirs += ['src/main/java']
 
 tasks.withType(Test) {
 	useTestNG() {
-        parallel = 'classes'
-        threadCount = 5
+		// comment the below code to stop parallelization of tests.
+		parallel = 'classes'
+		threadCount = 5
 	}
-
 	systemProperties = [
-			BROWSER      : System.getProperty('BROWSER', 'firefox'),
-			SELENIUM_HOST: System.getProperty('SELENIUM_HOST', 'localhost'),
-			SELENIUM_PORT: System.getProperty('SELENIUM_PORT', '4444'),
-			DRIVERTYPE   : System.getProperty('DRIVERTYPE', 'local')
+			BROWSER          : System.getProperty('BROWSER', 'firefox'),
+			SELENIUM_HOST    : System.getProperty('SELENIUM_HOST', 'localhost'),
+			SELENIUM_PORT    : System.getProperty('SELENIUM_PORT', '4444'),
+			DRIVERTYPE       : System.getProperty('DRIVERTYPE', 'local'),
+			SAUCE_USERNAME   : System.getProperty('SAUCE_USERNAME', 'sandeep-singh-79'),
+			SAUCE_ACCESS_KEY : System.getProperty('SAUCE_ACCESS_KEY', 'hIngLzBN7tzK4q+8mRTFt5vucVIGISGkfgJm/BTm8XY='),
+			SELENIUM_PLATFORM: System.getProperty('SELENIUM_PLATFORM', 'Windows 8'),
+			SELENIUM_VERSION : System.getProperty('SELENIUM_VERSION', '42')
 	]
 
-	maxParallelForks = 5
+	maxParallelForks = 2
+
+	options {
+		listeners << "com.demo.POM.singleton.Listeners.TestFailureListener"
+	}
+
 }
