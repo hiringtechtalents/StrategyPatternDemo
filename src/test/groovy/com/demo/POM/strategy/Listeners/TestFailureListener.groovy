@@ -100,10 +100,10 @@ class TestFailureListener implements ITestListener {
 
     private def getDateTime() {
         def now = new Date();
-        def strDate = new SimpleDateFormat("dd-MM-yyyy").format(now);
-        def strTime = new SimpleDateFormat("HH:mm:ss").format(now);
-        strTime = strTime.replace(":", "-");
+        def strDate = new SimpleDateFormat("dd-MM-yyyy").format(now)
+        /*def strTime = new SimpleDateFormat("HH:mm:ss").format(now);
+        strTime = strTime.replace(":", "-");*/
 
-        "D" + strDate + "_T" + strTime;
+        "D${strDate}"
     }
 }
