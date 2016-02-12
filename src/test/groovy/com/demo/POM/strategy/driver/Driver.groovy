@@ -1,4 +1,8 @@
 package com.demo.POM.strategy.driver
+
+import com.demo.POM.strategy.base.FrameworkConfig
+import org.openqa.selenium.WebDriver
+
 /**
  * The base class for creating a WebDriver instance based on whether the
  * requested driver is local, remote or mobile
@@ -8,9 +12,6 @@ package com.demo.POM.strategy.driver
  * @author SANDEEP
  *
  */
-import org.openqa.selenium.WebDriver
-import com.demo.POM.strategy.FrameworkConfig
-
 abstract class Driver {
 	
 	protected driver;

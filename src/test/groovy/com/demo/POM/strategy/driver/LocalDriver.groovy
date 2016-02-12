@@ -44,14 +44,11 @@ class LocalDriver extends Driver {
 				}
 				System.setProperty("webdriver.chrome.driver", path)
 				return new ChromeDriver()
-			} else if(browser.toLowerCase().contains("internet")) {
-				if (System.getProperty("os.name").contains("Windows")) {
-					path = createDriverIfDriverFileExists("IEDriverServer.exe")
-				}
+			} else if (browser.toLowerCase().contains("internet") && System.getProperty("os.name").contains("Windows")) {
+				path = createDriverIfDriverFileExists("IEDriverServer.exe")
 				System.setProperty("webdriver.ie.driver", path)
 				DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer()
 				capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true)
-				capabilities.setCapability("ie.ensureCleanSession", true);
 				return new InternetExplorerDriver(capabilities)
 			} else if(browser.toLowerCase().contains("safari")) {
 				// TODO: yet to be implemented.

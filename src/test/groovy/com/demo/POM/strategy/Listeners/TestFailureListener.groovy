@@ -1,6 +1,6 @@
 package com.demo.POM.strategy.Listeners
 
-import com.demo.POM.strategy.FrameworkConfig
+import com.demo.POM.strategy.base.FrameworkConfig
 import com.demo.POM.strategy.driver.WebDriverFactory
 import org.apache.commons.io.FileUtils
 import org.openqa.selenium.OutputType

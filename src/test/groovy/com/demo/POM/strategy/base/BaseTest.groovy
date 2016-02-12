@@ -1,4 +1,5 @@
-package com.demo.POM.strategy
+package com.demo.POM.strategy.base
+
 import com.demo.POM.strategy.driver.WebDriverFactory
 import org.testng.annotations.AfterClass
 import org.testng.annotations.AfterMethod

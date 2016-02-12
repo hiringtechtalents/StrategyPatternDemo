@@ -1,6 +1,7 @@
 package com.demo.POM.strategy.driver
 
 import org.openqa.selenium.WebDriver
+import org.openqa.selenium.ie.InternetExplorerDriver
 import org.openqa.selenium.remote.DesiredCapabilities
 import org.openqa.selenium.remote.RemoteWebDriver
 
@@ -37,10 +38,10 @@ class SauceLabsDriver extends Driver {
 		}
 		capabilities.setCapability("platform", platform)
 		capabilities.setCapability("version", version)
-		this.driver = new RemoteWebDriver(
-				new URL('http://${userName}:${accessKey}@${server}:${port}/wd/hub'), capabilities)
-			
-		return this.driver
+		driver = new RemoteWebDriver(
+				new URL("http://${userName}:${accessKey}@${server}:${port}/wd/hub"), capabilities)
+
+		return driver
 	}
 
 }

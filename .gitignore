@@ -114,3 +114,7 @@ buildNumber.properties
 
 # ignore screenshots folder and screenshots
 /screenshots/
+
+## ignore log files
+*.log
+/log/

@@ -3,7 +3,7 @@
  */
 package com.demo.POM.strategy.pages;
 
-import com.demo.POM.strategy.BasePageObject;
+import com.demo.POM.strategy.base.BasePageObject;
 import com.demo.POM.strategy.util.KEYS;
 import com.demo.POM.strategy.util.util;
 import groovy.util.ConfigObject;
@@ -23,7 +23,10 @@ import java.util.concurrent.TimeUnit;
  *
  */
 public class PersonalInfoPage extends BasePageObject {
-	// various Personal Info fields
+    public static Map<String, String> personalInfo = new HashMap<>();
+    public static Map<String, String> addressInfo = new HashMap<>();
+    public static Map<String, String> otherInfo = new HashMap<>();
+    // various Personal Info fields
     @FindBy(id="id_gender1")
     private WebElement titleMr;
     @FindBy(id="id_gender2")
@@ -40,7 +43,6 @@ public class PersonalInfoPage extends BasePageObject {
     private WebElement monthDOB;
     @FindBy(id="years")
     private WebElement yearDOB;
-
     // various address fields
     @FindBy(id="firstname")
     private WebElement addressFirstName;
@@ -60,7 +62,6 @@ public class PersonalInfoPage extends BasePageObject {
     private WebElement addressZip;
     @FindBy(id="id_country")
     private WebElement addressCountry;
-
     @FindBy(id="other")
     private WebElement additionalInfo;
     @FindBy(id="phone")
@@ -69,24 +70,15 @@ public class PersonalInfoPage extends BasePageObject {
     private WebElement mobilePhone;
     @FindBy(id="alias")
     private WebElement addressAlias;
-
     @FindBy(id="submitAccount")
     private WebElement submit;
-
-    public static Map<String, String> personalInfo = new HashMap<>();
-    public static Map<String, String> addressInfo = new HashMap<>();
-    public static Map<String, String> otherInfo = new HashMap<>();
-
-    public enum GENDER {
-        MR, MRS
-    }
 
     /**
 	 * @param driver
 	 */
 	public PersonalInfoPage(WebDriver driver) {
 		super(driver);
-		
+
 		PageFactory.initElements(driver, this);
 	}
 
@@ -160,5 +152,9 @@ public class PersonalInfoPage extends BasePageObject {
         submit.click();
 
         return PageFactory.initElements((WebDriver) driver, AddressPage.class);
+    }
+
+    public enum GENDER {
+        MR, MRS
     }
 }

@@ -1,6 +1,6 @@
 package com.demo.POM.strategy.pages;
 
-import com.demo.POM.strategy.BasePageObject;
+import com.demo.POM.strategy.base.BasePageObject;
 import com.demo.POM.strategy.util.util;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

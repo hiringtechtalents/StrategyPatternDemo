@@ -1,4 +1,4 @@
-package com.demo.POM.strategy
+package com.demo.POM.strategy.base
 
 import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver

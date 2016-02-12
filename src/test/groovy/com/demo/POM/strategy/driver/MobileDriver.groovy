@@ -34,7 +34,11 @@ class MobileDriver extends Driver {
 			caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, config.seleniumConfigs.mobile.platformVersion)
 			return (new AndroidDriver(new URL("http://${config.seleniumConfigs.mobile.ip}:${config.seleniumConfigs.mobile.port}/wd/hub"),
 					caps))
+		} else {
+			throw new RuntimeException("Currently unsupported mobile driver: ${config.seleniumConfigs.mobile.platform}")
 		}
+
+		// TODO: code to create IOSDriver instance.
 	}
 
 }

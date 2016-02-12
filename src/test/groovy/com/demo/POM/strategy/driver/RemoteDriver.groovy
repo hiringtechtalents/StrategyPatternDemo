@@ -25,8 +25,11 @@ class RemoteDriver extends Driver {
 	@Override
 	WebDriver createDriver() {
 		def browser = config.seleniumConfigs.remote.browser
-
-		DesiredCapabilities capabilities
+		def hostAddress = config.seleniumConfigs.remote.ip
+		def hostPort = config.seleniuConfigs.remote.port
+		def platform = config.seleniumConfigs.remote.platform
+		def version = config.seleniumConfigs.remote.version
+		def capabilities
 		
 		if(driver == null) {
 			if (browser.equals("firefox")) {
@@ -43,12 +46,10 @@ class RemoteDriver extends Driver {
 				throw new RuntimeException("Browser type unsupported")
 			}
 		} else { return driver }
-		
-		capabilities.setVersion(config.seleniumConfigs.remote.version)
-		capabilities.setPlatform(Platform.fromString(config.seleniumConfigs.remote.platform))
-		return (new RemoteWebDriver(
-				new URL("http://${config.seleniumConfigs.remote.ip}:${config.seleniuConfigs.remote.port}/wd/hub"),
-				capabilities))
-	}
 
+		capabilities.version = version
+		capabilities.platform = Platform.fromString(platform)
+		return (new RemoteWebDriver(
+				new URL("http://${hostAddress}:${hostPort}/wd/hub"), capabilities))
+	}
 }

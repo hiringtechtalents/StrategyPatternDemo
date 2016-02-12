@@ -1,6 +1,6 @@
 package com.demo.POM.strategy.test
 
-import com.demo.POM.strategy.BaseTest
+import com.demo.POM.strategy.base.BaseTest
 import com.demo.POM.strategy.pages.*
 import com.demo.POM.strategy.util.KEYS
 import org.testng.annotations.BeforeMethod

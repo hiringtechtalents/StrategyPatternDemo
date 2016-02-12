@@ -1,4 +1,4 @@
-package com.demo.POM.strategy
+package com.demo.POM.strategy.base
 
 class FrameworkConfig implements Cloneable {
 
